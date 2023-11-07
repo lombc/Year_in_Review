@@ -1,0 +1,50 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.carousel-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #f0f0f0;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-slide {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Scrollbar styles */
+.carousel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
