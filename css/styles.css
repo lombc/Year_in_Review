@@ -10,9 +10,8 @@ body, html {
 
 img {
     max-width: 100%;
-    height: 400px;
-    width: 800px;
-    object-fit: cover;
+    height: auto;
+    width: auto;
 }
 
 /* END NORMALIZING RULES */
@@ -26,148 +25,185 @@ body {
 
 ul {
     list-style-type: none;
+    padding-left: 0;
 }
 
-/* ID - Primarily for Nav Bar feature */
+/* ID */
+
+
+#page-title {
+    font-size: 4.5em;
+}
 
 
 /* CLASSES */
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 0px;
 }
 
-.menu {
-    /* define the height of the menu */
-    --menu-height: 40px;
+/* HAMBURGER MENU */
+/*
+ * Made by Erik Terwan
+ * 24th of November 2015
+ * MIT license
+ * https://codepen.io/erikterwan/pen/grOZxx
+ *
+ * If you are thinking of using this in
+ * production code, beware of the browser
+ * prefixes.
+ */
 
-    /* holder and ul general style */
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    ul {
-      list-style: none;
-      padding: 16px;
-      margin: 0;
-      li, li a {
-        opacity: .8;
-        color: #ffffff;      
-        cursor: pointer;
-        transition: 200ms;
-        text-decoration: none;
-        white-space: nowrap;
-        font-weight: 700;
-        &:hover {
-          opacity: 1;
-        }
-        a {
-          display: flex;
-          align-items: center;
-          height: 100%;
-          width: 100%;      
-        }      
-      }
-      /* lets put an arrow down */
-      /* to the li`s with dropdown */
-      li {
-        padding-right: 36px;
-        &::before {
-          content: '';
-          width: 0; 
-          height: 0; 
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 5px solid #FFA500;
-          position: absolute;
-          right: 8px;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
-      .link {
-        /* links dont need arrow */
-        &::before {
-          padding-right: 0;
-          display: none;
-        }      
-      }
-    }
-    /* the first ul inside the container
-     is the menu, so must be visible 
-     and have its own style */
-    > ul {
-      display: flex;
-      height: var(--menu-height);
-      align-items: center;
-      background-color: #000000;
-      /* the first ul elements can be a
-       link or an li with a nested ul. 
-       the nested ul will be a dropdown */
-      li {
-        position: relative;
-        margin: 0 8px;
-        /* the dropdown style */
-        ul {
-          visibility: hidden;
-          opacity: 0;        
-          padding: 0;
-          min-width: 160px;
-          background-color: #333;
-          position: absolute;
-          top: calc(var(--menu-height) + 5px);
-          left: 50%;
-          transform: translateX(-50%);
-          transition: 200ms;
-          transition-delay: 200ms;
-          /* the dropdown items style */
-          li {
-            margin: 0;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            height: 30px;
-            padding-right: 40px;
-            /* lets put an arrow right
-             to the inner li`s with
-             dropdowns */
-            &::before {
-              width: 0; 
-              height: 0; 
-              border-top: 5px solid transparent;
-              border-bottom: 5px solid transparent;
-              border-left: 5px solid #FFA500;
-            }
-            /* every dropdown after the
-             first must open to the right */
-            ul {
-              top: -2%;
-              left: 100%;
-              transform: translate(0)
-            }
-            &:hover {
-              background-color: #000000;
-            }
-          }
-        }
-        /* on hover an li (not an <a>)
-         must show its ul (dropdown) */
-        &:hover {
-          > ul {
-            opacity: 1;
-            visibility: visible;
-            transition-delay: 0ms;
-          }
-        }
-      }
-    }
-  }
+
+a
+{
+  text-decoration: none;
+  color: #232323;
   
+  transition: color 0.3s ease;
+}
+
+a:hover
+{
+  font-weight: 900;
+}
+
+#menuToggle
+{
+  display: block;
+  position: fixed;
+  top: 70px;
+  right: 40px;
   
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 1; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 46px;
+  height: 8px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #0D0221;
+  border-radius: 3px;
+  
+  z-index: 2;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: fixed;
+  width: 375px;
+  margin: -100px 0 0 0;
+  padding: 50px;
+  padding-top: 125px;
+  right: -100px;
+  
+  background: #A6CFD5;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's fade it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+  opacity: 2;
+}
+
+/* END HAMBURGER MENU */
 
 .banner {
     border-style: solid;
@@ -185,6 +221,130 @@ header {
     margin-bottom: 20px;
 }
 
+.new-releases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 60px;
+}
+
+.new-releases>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.new-releases>div:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.new-releases>div:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 20px;
+}
+
+.new-releases>div:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.new-releases>div:nth-child(5) {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.new-releases>div:nth-child(6) {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.new-releases>div:nth-child(7) {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+.new-releases>div:nth-child(8) {
+    grid-column: 1;
+    grid-row: 6;
+}
+
+.new-releases>div:nth-child(9) {
+    grid-column: 2;
+    grid-row: 6;
+}
+
+.new-releases>div:nth-child(10) {
+    grid-column: 1;
+    grid-row: 7;
+}
+
+.new-releases>div:nth-child(11) {
+    grid-column: 1;
+    grid-row: 8;
+}
+
+.new-releases>div:nth-child(12) {
+    grid-column: 2;
+    grid-row: 8;
+}
+
+.most-popular {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.most-popular>div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.most-popular>div:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.most-popular>div:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.most-popular>div:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.most-popular>div:nth-child(5) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.most-popular>div:nth-child(6) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.most-popular>div:nth-child(7) {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.most-popular>div:nth-child(8) {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.most-popular>div:nth-child(9) {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+.most-popular>div:nth-child(10) {
+    grid-column: 2;
+    grid-row: 5;
+}
+
 .get_connected {
     border-style: solid;
     border-width: 1px;
@@ -197,5 +357,5 @@ header {
     border-style: solid;
     border-width: 1px;
     padding: 30px 50px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
