@@ -1,3 +1,10 @@
+/*
+  Code from https://codepen.io/dbilanoski/pen/LabpzG
+  Title - Highlight Active Nav Link On Page Scroll (Plain JS)
+
+
+
+*/
 // Get all sections that have an ID defined
 const sections = document.querySelectorAll("section[id]");
 
