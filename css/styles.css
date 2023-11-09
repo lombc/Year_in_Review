@@ -57,10 +57,6 @@ header {
     margin-top: 10px;
 }
 
-.section{
-    height: 100vh;
-}
-
 .menu {        
     background:#A6CFD5;
     padding: 30px 50px;
@@ -75,8 +71,6 @@ header {
     z-index: 100;
 }
 
-/*FOR WHEN .nav_link is useless*/
-/* 
 .menu li {
     float: right;
 }
@@ -88,24 +82,14 @@ header {
     padding: 14px 16px;
     text-decoration: none;
 }
-*/
 
-.nav_link {
-    float: right;
-    display: block;
-    color: #0F084B;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.nav_link:hover {
+.menu a:hover {
     background-color: #0F084B;
     color: white;
     transition: 0.5s;
 }
 
-.nav_link:active {
+.menu .active {
     background-color: #0F084B;
     color: white;
 }
@@ -179,11 +163,13 @@ header {
 .rankings #nav_to_nr {
     text-align: center;
     border-bottom: #0F084B 1px dashed;
+    font-size: 2em;
 }
 
 .rankings #nav_to_mp {
     text-align: center;
     border-bottom: #0F084B 1px dashed;
+    font-size: 2em;
 }
 
 .rankings img {
@@ -327,6 +313,39 @@ header {
 }
 
 @media screen and (max-width: 700px) {
+    #page-title {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .menu {
+        background:#A6CFD5;
+        font-size: small;
+        padding: 30px 30px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background:#A6CFD5;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .menu li a {
+        text-align: center;
+        display: block;
+        color: #0F084B;
+        padding: 12px;
+        text-decoration: none;
+    }
+
+    .active {
+        background-color: #0F084B;
+        color: white;
+    }
+
     .text {
         font-size: medium;
     }
@@ -335,6 +354,7 @@ header {
         padding: 15px;
         font-size: small;
     }
+
     .new-releases {
         display: grid;
         grid-template-columns: 1fr;
