@@ -480,4 +480,8 @@ header {
         height: 300px;
         overflow: scroll;
     }
+
+    .citations {
+        font-size: xx-small
+    }
 }
